@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+.component {
+	border: 2px solid green;
+	padding: 10px;
+	margin: 5px;
+}
+
+.A {
+	background-color: beige;
+	height: 300px;
+}
+
+.B {
+	background-color:darkseagreen;
+	height: 400px;
+}
+
+.list {
+	background-color:lightgreen;
+	height: 300px;
+}
+
+.detail {
+	background-color:lavender;
+	height: 300px;
+}
