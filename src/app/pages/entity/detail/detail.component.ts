@@ -15,8 +15,6 @@ export class DetailComponent implements OnInit {
 
     this.route.paramMap.subscribe((params) => {
       this.userId = params.get('id');
-      // return this.service.getHeroes();
     });
-    // );
   }
 }
