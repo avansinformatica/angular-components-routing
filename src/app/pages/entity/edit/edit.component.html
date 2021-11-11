@@ -3,19 +3,23 @@
     <div class="col-md-6"><p>Edit works!</p></div>
   </div>
 
-  <h1>User {{ userId }}</h1>
+  <h1>{{ user?.firstName }} {{ user?.lastName }}</h1>
 
   <div class="row">
     <div class="col-6">
-      <input type="email" class="form-control" value="user@mail.com" />
+      <input
+        type="email"
+        class="form-control"
+        value="{{ user?.emailAdress }}"
+      />
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-5 offset-md-6">
+    <div class="col-md-4 offset-md-8">
       <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
       <a
-        class="btn btn-outline-secondary"
+        class="btn btn-outline-secondary btn-sm"
         href="#"
         role="button"
         routerLink=".."
@@ -23,7 +27,12 @@
       >
       <!-- Bij Save roepen we de save() functie aan, en navigeren
 				terug naar details binnen die functie -->
-      <button class="btn btn-primary" href="#" role="button" (click)="save()">
+      <button
+        class="btn btn-primary btn-sm"
+        href="#"
+        role="button"
+        (click)="save()"
+      >
         Save
       </button>
     </div>

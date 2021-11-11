@@ -9,17 +9,21 @@ import { ListComponent } from './pages/entity/list/list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'component-a' },
-  { path: 'component-a', pathMatch: 'full', component: AComponent },
+  { path: 'component-a', component: AComponent },
   { path: 'component-b', pathMatch: 'full', component: BComponent },
   { path: 'users', pathMatch: 'full', component: ListComponent },
+  // users/new moet voor users/:id, omdat new anders als de id wordt gezien.
+  // Volgorde is belangrijk in routing.
+  { path: 'users/new', pathMatch: 'full', component: EditComponent },
   { path: 'users/:id', pathMatch: 'full', component: DetailComponent },
+  { path: 'users/:id/edit', pathMatch: 'full', component: EditComponent },
   {
     path: 'columns',
     component: ColumnsComponent,
     children: [
+      { path: 'new', pathMatch: 'full', component: EditComponent },
       { path: ':id', pathMatch: 'full', component: DetailComponent },
       { path: ':id/edit', pathMatch: 'full', component: EditComponent },
-      { path: ':id/new', pathMatch: 'full', component: EditComponent },
     ],
   },
 ];

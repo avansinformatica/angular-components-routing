@@ -1,28 +1,29 @@
 <div class="component list">
   <div class="row">
     <div class="col-md-6"><p>List works!</p></div>
-    <div class="col-md-3 offset-md-3">
-      <a class="btn btn-primary" href="#" role="button" routerLink="new">New</a>
+    <div class="col-md-2 offset-md-4">
+      <a class="btn btn-primary btn-sm" href="#" role="button" routerLink="new"
+        >New</a
+      >
     </div>
   </div>
 
-  <table class="table table-bordered table-hover">
+  <!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
+  <table class="table table-striped table-hover">
     <thead>
-      <th>name</th>
-      <th>link</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
     </thead>
     <tbody>
-      <tr>
-        <td><a routerLink="1">User Een</a></td>
-        <td>user-a@host.com</td>
-      </tr>
-      <tr>
-        <td><a routerLink="2">User Twee</a></td>
-        <td>user-a@host.com</td>
-      </tr>
-      <tr>
-        <td><a routerLink="3">User Drie</a></td>
-        <td>user-a@host.com</td>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>
+          <a routerLink="{{ user.id }}">
+            {{ user.firstName }} {{ user.lastName }}</a
+          >
+        </td>
+        <td>{{ user.emailAdress }}</td>
       </tr>
     </tbody>
   </table>
