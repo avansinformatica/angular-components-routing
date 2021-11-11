@@ -1,0 +1,45 @@
+#
+# GitLab example CI/CD script
+# See https://docs.gitlab.com/ee/ci/yaml/README.html
+#
+# Secure Variables like $DB_PASSWORD can added by going to your
+# project’s Settings ➔ CI / CD ➔ Variables on the GitLab website.
+#
+image: node:latest
+
+stages:
+  # - test
+  # - metrics
+  - deploy
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - node_modules
+
+#
+# Global variables
+#
+# variables:
+#   DOCKER_HOST: tcp://docker:2375/
+#   DOCKER_DRIVER: overlay2
+
+#
+# Deploy to Heroku
+#
+production:
+  type: deploy
+  stage: deploy
+  image: ruby:latest
+  script:
+    # Get your key at https://dashboard.heroku.com/account
+    # and add it to your project environment variables at GitLab.
+    - echo "Heroku api key = $HEROKU_API_KEY"
+    # The name of your app at Heroku. See https://dashboard.heroku.com/apps.
+    - echo "Heroku appname = $HEROKU_APP_NAME"
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+  only:
+    - master
