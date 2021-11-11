@@ -1,14 +1,18 @@
 {
   "name": "my-angular-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "node src/server.js",
+    "postinstall": "ng build",
+    "build": "ng build --aot",
+    "test": "ng test --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI"
   },
   "private": true,
+  "engines": {
+    "node": "^v14.15.1",
+    "npm": "^6.14.1"
+  },
   "dependencies": {
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
