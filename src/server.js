@@ -23,7 +23,7 @@ const options = {
   setHeaders: (res, path, stat) => {
     res.set(
       "Content-Security-Policy",
-      "default-src 'self' http://my-angular-app.herokuapp.com/; script-src 'self' http://my-angular-app.herokuapp.com/; connect-src http://my-angular-app.herokuapp.com/ 'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
+      "default-src 'self' http://cswfr.herokuapp.com/; script-src 'self' http://cswfr.herokuapp.com/; connect-src http://cswfr.herokuapp.com/ 'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
     );
   },
 };
