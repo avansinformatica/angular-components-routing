@@ -18,12 +18,12 @@
 
 .list {
 	background-color:lightgreen;
-	height: 300px;
+	min-height: 300px;
 }
 
 .detail, .edit {
 	background-color:lavender;
-	height: 270px;
+	min-height: 270px;
 }
 
 .edit {

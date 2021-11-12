@@ -29,7 +29,9 @@ export class UserService {
     },
   ];
 
-  constructor() {}
+  constructor() {
+    console.log('Service constructor aangeroepen');
+  }
 
   getUsers(): User[] {
     console.log('getUsers aangeroepen');
@@ -37,6 +39,7 @@ export class UserService {
   }
 
   getUserById(id: number): User {
+    console.log('getUserById aangeroepen');
     return this.users.filter((user) => user.id === id)[0];
   }
 }

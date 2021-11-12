@@ -11,30 +11,31 @@
         type="email"
         class="form-control"
         value="{{ user?.emailAdress }}"
+        placeholder="Your email adress"
       />
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4 offset-md-8">
-      <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
-      <a
-        class="btn btn-outline-secondary btn-sm"
-        href="#"
-        role="button"
-        routerLink=".."
-        >Cancel</a
-      >
+  <div class="row justify-content-end">
+    <div class="col-6">
       <!-- Bij Save roepen we de save() functie aan, en navigeren
 				terug naar details binnen die functie -->
       <button
-        class="btn btn-primary btn-sm"
+        class="btn btn-primary btn-sm float-right"
         href="#"
         role="button"
         (click)="save()"
       >
         Save
       </button>
+      <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
+      <a
+        class="btn btn-outline-secondary btn-sm float-right"
+        href="#"
+        role="button"
+        routerLink=".."
+        >Cancel</a
+      >
     </div>
   </div>
 </div>
