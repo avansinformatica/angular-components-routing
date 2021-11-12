@@ -21,10 +21,7 @@ const appname = "my-angular-app";
 // Set express options
 const options = {
   setHeaders: (res, path, stat) => {
-    res.set(
-      "Content-Security-Policy",
-      "default-src 'self' http://cswfr.herokuapp.com/; script-src 'self' http://cswfr.herokuapp.com/; connect-src http://cswfr.herokuapp.com/ 'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
-    );
+    res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
   },
 };
 
