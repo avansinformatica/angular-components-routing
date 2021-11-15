@@ -21,7 +21,8 @@ const appname = "my-angular-app";
 // Set express options
 const options = {
   setHeaders: (res, path, stat) => {
-    res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
+    // res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
+    res.set("Content-Security-Policy", "default-src *;");
   },
 };
 
