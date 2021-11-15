@@ -24,7 +24,7 @@ const options = {
     // res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
     res.set(
       "Content-Security-Policy",
-      "default-src *; style-src 'unsafe-inline'; script-src 'unsafe-inline'"
+      "default-src *; style-src *.herokuapp.com; script-src *.herokuapp.com"
     );
   },
 };
