@@ -22,7 +22,10 @@ const appname = "my-angular-app";
 const options = {
   setHeaders: (res, path, stat) => {
     // res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
-    res.set("Content-Security-Policy", "default-src *;");
+    res.set(
+      "Content-Security-Policy",
+      "default-src *; style-src 'unsafe-inline'; script-src 'unsafe-inline'"
+    );
   },
 };
 
