@@ -25,7 +25,7 @@ import { UserService } from '../entity/user.service';
       <table>
         <!-- users is hier een regulier array waar je doorheen kunt lopen. -->
         <tr *ngFor="let user of users">
-          <td>{{ user.firstName }}</td>
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
         </tr>
       </table>
     </div>

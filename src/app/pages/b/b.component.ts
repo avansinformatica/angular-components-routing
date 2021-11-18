@@ -1,21 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { User } from '../entity/user.model';
 import { UserService } from '../entity/user.service';
 
 /**
- * Observables en uitlezen van data - variant 1: subscription in component.
+ * Observables en uitlezen van data - variant 2: async pipe in template.
  *
- * In deze variant voer je de .subscription() functie uit in de component. Je
- * leest hierbij de data uit (users) en bewaart die in een lokale variabele
- * (this.users). In het template kun je die lokale variabele gebruiken (ngFor).
+ * In deze variant voer je de .subscription() functie impliciet uit via de
+ * async-pipe in het HTML template. Kijk goed naar de code: we roepen hier
+ * geen .subscribe() en geen .unsubscribe aan! Angular regelt dat voor je.
  *
- * Nadeel: een Observable blijft actief totdat je .unsubscribe() aanroept - ook
- * als de component na route navigatie niet meer bestaat! En als je opnieuw teruggaat
- * naar de A-component via routing, wordt opnieuw op dezelfde Observable subscribed.
- * Dit is een MEMORY LEAK.
+ * De conventie is dat variabelen in dit geval een $ als postfix krijgen.
+ * Doe dat dus ook in jouw code.
  *
- * Oplossing: ngDestroy() met .unsubscribe. Zie het voorbeeld.
+ * Nadeel: eigenlijk zijn er geen nadelen. Er is hier geen memory leak.
+ * Let wel op dat iedere aanroep van de async-pipe eigenlijk de .subscribe()
+ * aanroept en dus een call naar de service en API uitvoert.
+ *
+ *
  */
 @Component({
   selector: 'app-b',
@@ -25,7 +28,7 @@ import { UserService } from '../entity/user.service';
       <table>
         <!-- users$ is hier een Observable waar je doorheen kunt lopen. -->
         <tr *ngFor="let user of users$ | async">
-          <td>{{ user.firstName }}</td>
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
         </tr>
       </table>
     </div>
@@ -33,12 +36,16 @@ import { UserService } from '../entity/user.service';
   styles: [],
 })
 export class BComponent implements OnInit {
+  // Conventie: naam met $ als extentie.
   users$?: Observable<User[]>;
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     console.log('BComponent.ngOnInit()');
-    this.users$ = this.userService.getUsersAsObservable();
+    this.users$ = this.userService
+      .getUsersAsObservable()
+      // Je kunt hier zelfs de observable stream nog bewerken!
+      .pipe(tap(console.log));
   }
 }
