@@ -30,7 +30,6 @@ cache:
 install:
   image: cypress/browsers:node14.17.0-chrome88-ff89
   stage: build
-
   script:
     - yarn install --frozen-lockfile
     # check Cypress binary path and cached versions
@@ -38,6 +37,9 @@ install:
     - npx cypress cache list
     # build in development mode, so we talk to the mock backend in our tests.
     - npm run build -- --configuration development
+  only:
+    - release
+    - master
 
 #
 # Run Angular Karma unittests
