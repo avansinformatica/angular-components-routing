@@ -41,7 +41,7 @@ export class AComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('AComponent.ngOnInit()');
     this.subscription = this.userService
-      .getUsersAsObservable()
+      .getUsers()
       .subscribe((users) => (this.users = users));
   }
 

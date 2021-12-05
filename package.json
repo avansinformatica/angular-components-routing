@@ -4,13 +4,20 @@
   "scripts": {
     "ng": "ng",
     "start": "node src/server.js",
-    "postinstall": "ng build",
+    "start:mockapi": "node cypress/plugins/mockserver.js",
     "build": "ng build --aot",
-    "test": "ng test --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI"
+    "build:dev": "ng build --aot --configuration development",
+    "postinstall": "npm run build",
+    "test": "ng test --code-coverage --no-watch --browsers=ChromeHeadlessCI",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --spec 'cypress/integration/**/*' --browser chrome",
+    "cypress:e2e": "start-server-and-test start http://localhost:4200 cypress:run"
   },
   "private": true,
   "engines": {
-    "node": "^v14.15.1",
+    "node": "^14.15.1",
     "npm": "^6.14.1"
   },
   "dependencies": {
@@ -33,17 +40,20 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.10",
+    "@angular-devkit/build-angular": "^12.2.10",
     "@angular/cli": "~12.2.10",
     "@angular/compiler-cli": "~12.2.0",
+    "@cypress/schematic": "^1.6.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "cypress": "latest",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "start-server-and-test": "^1.14.0",
     "typescript": "~4.3.5"
   }
 }

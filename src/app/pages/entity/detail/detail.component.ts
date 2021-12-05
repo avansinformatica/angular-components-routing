@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { of, Subscription } from 'rxjs';
+import { delay, switchMap, tap } from 'rxjs/operators';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -7,9 +9,10 @@ import { UserService } from '../user.service';
   selector: 'app-detail',
   templateUrl: './detail.component.html',
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
   userId: string | null = null;
   user: User | null = null;
+  subs?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,9 +25,17 @@ export class DetailComponent implements OnInit {
 
     // Deze manier maakt gebruik van RxJs Observables.
     // We komen hier bij services en HTTP op terug.
-    this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
-      this.user = this.userService.getUserById(Number(this.userId)); // Waarom 'Number'?
-    });
+    this.subs = this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) =>
+          of(this.userService.getUserById(Number(params.get('id'))))
+        ),
+        tap(console.log)
+      )
+      .subscribe((user) => (this.user = user));
+  }
+
+  ngOnDestroy() {
+    if (this.subs) this.subs.unsubscribe();
   }
 }

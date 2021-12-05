@@ -44,7 +44,7 @@ export class BComponent implements OnInit {
   ngOnInit(): void {
     console.log('BComponent.ngOnInit()');
     this.users$ = this.userService
-      .getUsersAsObservable()
+      .getUsers()
       // Je kunt hier zelfs de observable stream nog bewerken!
       .pipe(tap(console.log));
   }
