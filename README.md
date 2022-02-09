@@ -2,6 +2,8 @@
 
 Voorbeeldproject voor de Client-side webframeworks-lessen van Avans Hogeschool, opleiding Informatica, Breda.
 
+De applicatie draait [ook op Heroku](https://cswfr.herokuapp.com/).
+
 Deze repo bevat code die in de lessen is gebruikt.
 
 ## Les 2
