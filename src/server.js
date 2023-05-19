@@ -20,13 +20,14 @@ const appname = "my-angular-app";
 
 // Set express options
 const options = {
-  setHeaders: (res, path, stat) => {
-    // res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
-    res.set(
-      "Content-Security-Policy",
-      "default-src *; style-src *.herokuapp.com; script-src *.herokuapp.com"
-    );
-  },
+    setHeaders: (res, path, stat) => {
+        // res.set("Content-Security-Policy", "default-src 'unsafe-inline';");
+        res.set(
+            "Content-Security-Policy",
+            // "default-src *; style-src *.herokuapp.com; script-src *.herokuapp.com"
+            "default-src *; style-src *; script-src *"
+        );
+    },
 };
 
 // Point static path to dist
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, "..", "dist", appname), options));
 
 // Catch all routes and return the index file
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "dist", appname, "index.html"));
+    res.sendFile(path.join(__dirname, "..", "dist", appname, "index.html"));
 });
 
 // Get port from environment and store in Express.
@@ -44,7 +45,7 @@ app.set("port", port);
 const server = http.createServer(app);
 // Listen on provided port, on all network interfaces.
 server.listen(port, () => {
-  console.log(
-    `Angular app \'${appname}\' running in ${process.env.NODE_ENV} mode on port ${port}`
-  );
+    console.log(
+        `Angular app \'${appname}\' running in ${process.env.NODE_ENV} mode on port ${port}`
+    );
 });
