@@ -1,4 +1,4 @@
-name: Deployment
+name: Deployment to Heroku
 
 on:
     push:
@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    Heroku-deploy:
+    Heroku-deployment:
         runs-on: ubuntu-latest
         environment:
             # naam van mijn environment op GitHub
